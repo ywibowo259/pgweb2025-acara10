@@ -53,10 +53,11 @@ var osm = L.tileLayer(
   }
 ).addTo(map);
 
-// URL WMS GEO_SERVER LOKAL
+// mengakses WMS dari GeoServer lokal
 var urlLocalWMS = "http://localhost:8080/geoserver/wms";
 
 // WMS LOKAL – ADMINISTRASI DESA
+// Memanggil layer WMS dari GeoServer
 var wmsAdminDesa = L.tileLayer.wms(urlLocalWMS, {
   layers: "PGWEB9:ADMINISTRASIDESA_AR_25K",
   format: "image/png",
@@ -99,8 +100,11 @@ L.control.layers(
 var legendAdmin = L.control({ position: "bottomleft" });
 
 legendAdmin.onAdd = function (map) {
+    //Membuat elemen HTML div untuk legend
   var div = L.DomUtil.create("div", "legend-control");
 
+
+  //Membuat URL untuk mengambil legend otomatis dari GeoServer
   var url1 = "http://localhost:8080/geoserver/wms?" +
     "REQUEST=GetLegendGraphic" +
     "&VERSION=1.0.0" +
